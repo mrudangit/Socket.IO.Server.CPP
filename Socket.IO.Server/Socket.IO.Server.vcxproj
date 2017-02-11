@@ -22,7 +22,7 @@
     <ProjectGuid>{DCED4A28-9094-45E5-B644-A589E808E1C0}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>SocketIOServer</RootNamespace>
-    <WindowsTargetPlatformVersion>8.1</WindowsTargetPlatformVersion>
+    <WindowsTargetPlatformVersion>10.0.14393.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -75,8 +75,8 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <IncludePath>C:\Boost\boost_1_63_0;C:\SocketIOCppServer\include;$(IncludePath)</IncludePath>
-    <LibraryPath>C:\Boost\boost_1_63_0\stage\lib;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(IncludePath)</IncludePath>
+    <LibraryPath>$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -146,6 +146,8 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="SioEvent.h" />
+    <ClInclude Include="SioEventAdapter.h" />
     <ClInclude Include="SocketIOClientHandler.h" />
     <ClInclude Include="SocketIOMessage.h" />
     <ClInclude Include="SocketIOPacket.h" />
@@ -154,6 +156,7 @@
     <ClInclude Include="WebSocketServer.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="SioEvent.cpp" />
     <ClCompile Include="Socket.IO.Server.cpp" />
     <ClCompile Include="SocketIOPacket.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -163,7 +166,27 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
     </ClCompile>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
+    <Import Project="..\packages\rapidjson.1.0.2\build\native\rapidjson.targets" Condition="Exists('..\packages\rapidjson.1.0.2\build\native\rapidjson.targets')" />
+    <Import Project="..\packages\websocketpp-mtk.repack.0.7.0-mtk19\build\native\websocketpp-mtk.repack.targets" Condition="Exists('..\packages\websocketpp-mtk.repack.0.7.0-mtk19\build\native\websocketpp-mtk.repack.targets')" />
+    <Import Project="..\packages\boost.1.63.0.0\build\native\boost.targets" Condition="Exists('..\packages\boost.1.63.0.0\build\native\boost.targets')" />
+    <Import Project="..\packages\boost_system-vc140.1.63.0.0\build\native\boost_system-vc140.targets" Condition="Exists('..\packages\boost_system-vc140.1.63.0.0\build\native\boost_system-vc140.targets')" />
+    <Import Project="..\packages\boost_date_time-vc140.1.63.0.0\build\native\boost_date_time-vc140.targets" Condition="Exists('..\packages\boost_date_time-vc140.1.63.0.0\build\native\boost_date_time-vc140.targets')" />
+    <Import Project="..\packages\boost_regex-vc140.1.63.0.0\build\native\boost_regex-vc140.targets" Condition="Exists('..\packages\boost_regex-vc140.1.63.0.0\build\native\boost_regex-vc140.targets')" />
   </ImportGroup>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\rapidjson.1.0.2\build\native\rapidjson.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\rapidjson.1.0.2\build\native\rapidjson.targets'))" />
+    <Error Condition="!Exists('..\packages\websocketpp-mtk.repack.0.7.0-mtk19\build\native\websocketpp-mtk.repack.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\websocketpp-mtk.repack.0.7.0-mtk19\build\native\websocketpp-mtk.repack.targets'))" />
+    <Error Condition="!Exists('..\packages\boost.1.63.0.0\build\native\boost.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\boost.1.63.0.0\build\native\boost.targets'))" />
+    <Error Condition="!Exists('..\packages\boost_system-vc140.1.63.0.0\build\native\boost_system-vc140.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\boost_system-vc140.1.63.0.0\build\native\boost_system-vc140.targets'))" />
+    <Error Condition="!Exists('..\packages\boost_date_time-vc140.1.63.0.0\build\native\boost_date_time-vc140.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\boost_date_time-vc140.1.63.0.0\build\native\boost_date_time-vc140.targets'))" />
+    <Error Condition="!Exists('..\packages\boost_regex-vc140.1.63.0.0\build\native\boost_regex-vc140.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\boost_regex-vc140.1.63.0.0\build\native\boost_regex-vc140.targets'))" />
+  </Target>
 </Project>

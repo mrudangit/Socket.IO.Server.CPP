@@ -10,16 +10,22 @@
 #include <stdio.h>
 #include <tchar.h>
 
-
+#include <iostream>
+#include <atomic>
+#include <list>
 
 // TODO: reference additional headers your program requires here
+
+
+
+
+#include <boost/uuid/uuid.hpp>            // uuid class
+#include <boost/uuid/uuid_generators.hpp> // generators
+#include <boost/uuid/uuid_io.hpp>         // streaming operators etc.
+
 #include <websocketpp/config/asio_no_tls.hpp>
 
 #include <websocketpp/server.hpp>
-
-#include <iostream>
-#include <atomic>
-
 
 
 typedef websocketpp::server<websocketpp::config::asio> WsServer;
