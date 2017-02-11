@@ -214,7 +214,12 @@ public:
 
 
 
+
+#ifdef _WIN32
 		sprintf_s(buffer, sizeof(buffer), "%d%s", 0, strbuf.GetString());
+#else
+        sprintf(buffer, "%d%s", 0, strbuf.GetString());
+#endif
 		std::string handshake(buffer);
 
 		std::cout << "HandShake : " << handshake << std::endl;
@@ -224,9 +229,11 @@ public:
 
 		server->send(hdl, handshake, websocketpp::frame::opcode::TEXT);
 
-
+#ifdef _WIN32
 		sprintf_s(buffer, sizeof(buffer), "%d%d", 4, 0);
-
+#else
+		sprintf(buffer, "%d%d", 4, 0);
+#endif
 
 		std::string openFrame(buffer);
 
