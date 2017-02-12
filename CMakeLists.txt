@@ -5,8 +5,8 @@ include_directories($ENV{HOME}/websocketCPP/websocketpp $ENV{HOME}/rapidjson/rap
 
 set(CMAKE_CXX_STANDARD 14)
 set(Boost_USE_STATIC_LIBS, ON)
-set(Boost_INCLUDE_DIR $ENV{HOME}/boost/boost_1_63_0)
-set(Boost_LIBRARY_DIR $ENV{HOME}/boost/boost_1_63_0/stage/lib)
+set(Boost_INCLUDE_DIR /usr/local/include)
+set(Boost_LIBRARY_DIR /usr/local/lib)
 
 find_package(Boost COMPONENTS system filesystem date_time REQUIRED)
 include_directories(${Boost_INCLUDE_DIR})
