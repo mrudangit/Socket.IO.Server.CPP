@@ -86,18 +86,12 @@ class SocketIOClientHandler
 	{
 
 
-		//std::cout << "Event Name:" << ev.get_name() << std::endl;
-		//std::cout << "Event NameSpace :" << ev.get_nsp() << std::endl;
 		
 		bool needAck = msgId >= 0;
 		SioEvent ev = SioEventAdapter::create_event(nsp, name, std::move(message), needAck);
 
+		auto mmp= (std::map<std::string, sio::message::ptr> &&) ev.get_message()->get_map();
 
-
-		auto mmp = ev.get_message()->get_map();
-
-
-		
 		std::cout << "Property A" << mmp["propA"]->get_string() << std::endl;
 
 

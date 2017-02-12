@@ -4,7 +4,7 @@ project(Socket_IO_Server_CPP)
 include_directories($ENV{HOME}/websocketCPP/websocketpp $ENV{HOME}/rapidjson/rapidjson/include)
 
 set(CMAKE_CXX_STANDARD 14)
-
+set(Boost_USE_STATIC_LIBS, ON)
 set(Boost_INCLUDE_DIR $ENV{HOME}/boost/boost_1_63_0)
 set(Boost_LIBRARY_DIR $ENV{HOME}/boost/boost_1_63_0/stage/lib)
 
