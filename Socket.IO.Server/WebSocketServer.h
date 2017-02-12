@@ -17,14 +17,14 @@ class WebSocketServer
 	int listenPortNumber;
 	WsServer server;
 
-	int numberOfClients;
+	std::atomic_int numberOfClients;
 
 	std::map<WsServer::connection_ptr, SocketIOClientHandler*> clients;
 
 
 
 	void OnWebSocketConnectionClose(WsServer *server, websocketpp::connection_hdl hdl) {
-		std::cout << "WebSocket Connection Closed Handle : "  << hdl.lock().get() << std::endl;
+		std::cout << "WsServer WebSocket Connection Closed Handle : "  << hdl.lock().get() << std::endl;
 
 		WsServer::connection_ptr connection =server->get_con_from_hdl(hdl);
 		clients.erase(connection);
@@ -34,7 +34,7 @@ class WebSocketServer
 	}
 
 	void OnWebSocketMessage(WsServer *server, websocketpp::connection_hdl hdl, message_ptr msg) {
-		std::cout << "OnWebSocketMessage called with hdl: " << hdl.lock().get()
+		std::cout << "WsServer OnWebSocketMessage called with hdl: " << hdl.lock().get()
 			<< " and message: " << msg->get_payload()
 			<< std::endl;
 	}
@@ -44,7 +44,7 @@ class WebSocketServer
 
 
 
-		std::cout << "OnWebSocketConnectionOpen New Connection Handle : " << hdl.lock().get() << std::endl;
+		std::cout << "WsServer OnWebSocketConnectionOpen New Connection Handle : " << hdl.lock().get() << std::endl;
 
 	
 		auto client = new SocketIOClientHandler(numberOfClients++,server, hdl);

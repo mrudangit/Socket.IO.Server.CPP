@@ -169,10 +169,9 @@ class SocketIOClientHandler
 
 public:
 
-	SocketIOClientHandler(int clientNumber, WsServer *server, websocketpp::connection_hdl hdl) : server_(server), hdl_(hdl)
+	SocketIOClientHandler(int clientNumber, WsServer *server, websocketpp::connection_hdl hdl) : clientId(clientNumber), server_(server), hdl_(hdl)
 	{
-		clientId = clientNumber;
-		clientNumber++;
+		
 		WsServer::connection_ptr connection = server->get_con_from_hdl(hdl);
 		connection->set_message_handler(bind(&SocketIOClientHandler::OnMessage, this, server, ::_1, ::_2));
 
